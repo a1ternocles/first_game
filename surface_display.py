@@ -20,10 +20,14 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(midbottom = (200,300))
         self.gravity = 0
 
+        self.jump_sound = pygame.mixer.Sound('first_game\\audio\\jump.mp3')
+        self.jump_sound.set_volume(0.3)
+
     def playerInput(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_SPACE] and self.rect.bottom >= 300:
             self.gravity= -20
+            self.jump_sound.play()
     
     def applyGravity(self):
         self.gravity += 1
@@ -74,7 +78,7 @@ class Obstacle(pygame.sprite.Sprite):
 
     def update(self):
         self.animationState() 
-        self.rect.x -=15
+        self.rect.x -=10
         self.destroy()
 
     
@@ -108,6 +112,14 @@ def collisions(player, obstacles):
     
     return True
 
+def collisionSprite():
+    collide_list = pygame.sprite.spritecollide(player.sprite, obstacle_group,False)
+    
+    if collide_list:
+        obstacle_group.empty()
+        return False
+    else: return True
+
 def player_animation():
     global player_surf,player_index
 
@@ -134,6 +146,9 @@ pygame.display.set_caption('Kirita')
 #-------Creating a play surface ----------
 screen_width,screen_height  = 800,400
 screen = pygame.display.set_mode((screen_width,screen_height))
+bg_music = pygame.mixer.Sound('first_game\\audio\\music.wav')
+bg_music.set_volume(0.5)
+bg_music.play(loops=-1)
 
 #Groups
 player = pygame.sprite.GroupSingle()
@@ -213,7 +228,6 @@ while True:
                 start_time = pygame.time.get_ticks()
 
         if game_active:
-
             if event.type == obstacle_timer : 
                 obstacle_group.add(Obstacle(choice(['fly','snail','snail','snail'])))
                 # if randint(0,2):
@@ -257,7 +271,8 @@ while True:
         obstacle_group.update()
 
         # Collision with enemy
-        game_active = collisions(player_rect, obstacle_rect_list)
+        # game_active = collisions(player_rect, obstacle_rect_list)
+        game_active = collisionSprite()
        
     else:
         screen.fill((94,129,162))
