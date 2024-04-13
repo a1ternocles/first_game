@@ -2,7 +2,7 @@ import pygame
 
 def surfaceText(texting):
     
-    font_type = 'first_game\\font\\Pixeltype.ttf'
+    font_type = 'font\Pixeltype.ttf'
     font_style = 28
 
     text_info = texting

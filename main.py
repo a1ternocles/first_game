@@ -14,17 +14,17 @@ async def main():
     
         def __init__(self):
             super().__init__()
-            player_walk1 = pygame.image.load('first_game\\graphics\\Player\\player_walk_1.png').convert_alpha()
-            player_walk2 = pygame.image.load('first_game\\graphics\\Player\\player_walk_2.png').convert_alpha()
+            player_walk1 = pygame.image.load('graphics\Player\player_walk_1.png').convert_alpha()
+            player_walk2 = pygame.image.load('graphics\Player\player_walk_2.png').convert_alpha()
             self.player_walk = [player_walk1, player_walk2]
             self.player_index = 0
-            self.player_jump = pygame.image.load('first_game\\graphics\\Player\\jump.png').convert_alpha()
+            self.player_jump = pygame.image.load('graphics\Player\jump.png').convert_alpha()
 
             self.image = self.player_walk[self.player_index]
             self.rect = self.image.get_rect(midbottom = (200,300))
             self.gravity = 0
 
-            self.jump_sound = pygame.mixer.Sound('first_game\\audio\\jump.mp3')
+            self.jump_sound = pygame.mixer.Sound('audio\jump.mp3')
             self.jump_sound.set_volume(0.3)
 
         def playerInput(self):
@@ -57,8 +57,8 @@ async def main():
             super().__init__()
             
             if type == 'fly':
-                fly1 = pygame.image.load('first_game\\graphics\\Fly\\Fly1.png').convert_alpha()
-                fly2 = pygame.image.load('first_game\\graphics\\Fly\\Fly2.png').convert_alpha()
+                fly1 = pygame.image.load('graphics\Fly\Fly1.png').convert_alpha()
+                fly2 = pygame.image.load('graphics\Fly\Fly2.png').convert_alpha()
                 self.frames = [fly1, fly2]
                 y_pos = 210
             elif type == 'snail':
@@ -90,7 +90,7 @@ async def main():
 
     def displayScore():
         current_time = int((pygame.time.get_ticks() - start_time)/1000)
-        score_surf = pygame.font.Font('first_game\\font\\Pixeltype.ttf', 32).render (f'Score: {current_time}', False, (64,64,64))
+        score_surf = pygame.font.Font('font\Pixeltype.ttf', 32).render (f'Score: {current_time}', False, (64,64,64))
         score_rect = score_surf.get_rect(center = (400,50))
         screen.blit(score_surf, score_rect)
         return current_time
@@ -150,7 +150,7 @@ async def main():
     #-------Creating a play surface ----------
     screen_width,screen_height  = 800,400
     screen = pygame.display.set_mode((screen_width,screen_height))
-    bg_music = pygame.mixer.Sound('first_game\\audio\\music.wav')
+    bg_music = pygame.mixer.Sound('audio\music.wav')
     bg_music.set_volume(0.5)
     bg_music.play(loops=-1)
 
@@ -161,8 +161,8 @@ async def main():
     obstacle_group = pygame.sprite.Group()
 
     # ---------------Surfaces------------
-    sky_surface = surface_regular.imageBackground('first_game\\graphics\\Sky.png').convert()
-    ground_surface = surface_regular.imageBackground('first_game\\graphics\\ground.png').convert()
+    sky_surface = surface_regular.imageBackground('graphics\Sky.png').convert()
+    ground_surface = surface_regular.imageBackground('graphics\ground.png').convert()
 
     text_surface = surface_text.surfaceText('My Game')
 
@@ -177,8 +177,8 @@ async def main():
     snail_index = 0
     snail_surf = snail[snail_index]
 
-    fly1 = pygame.image.load('first_game\\graphics\\Fly\\Fly1.png').convert_alpha()
-    fly2 = pygame.image.load('first_game\\graphics\\Fly\\Fly2.png').convert_alpha()
+    fly1 = pygame.image.load('graphics\Fly\Fly1.png').convert_alpha()
+    fly2 = pygame.image.load('graphics\Fly\Fly2.png').convert_alpha()
     fly = [fly1, fly2]
     fly_index = 0
     fly_surf = fly[fly_index]
@@ -187,9 +187,9 @@ async def main():
 
     #Player
     player_walk1 = surface_characters.player()
-    player_walk2 = pygame.image.load('first_game\\graphics\\Player\\player_walk_2.png').convert_alpha()
+    player_walk2 = pygame.image.load('graphics\Player\player_walk_2.png').convert_alpha()
     player_index = 0
-    player_jump = pygame.image.load('first_game\\graphics\\Player\\jump.png').convert_alpha()
+    player_jump = pygame.image.load('graphics\Player\jump.png').convert_alpha()
 
     player_walk = [player_walk1, player_walk2]
     player_surf = player_walk[player_index]
@@ -197,7 +197,7 @@ async def main():
     player_gravity = 0
 
     #Intro Screen
-    player_stand = pygame.image.load('first_game\\graphics\\Player\\player_stand.png').convert_alpha()
+    player_stand = pygame.image.load('graphics\Player\player_stand.png').convert_alpha()
     player_stand = pygame.transform.scale2x(player_stand)
     player_stand_rect = player_stand.get_rect(center = (400,200))
 
@@ -280,7 +280,7 @@ async def main():
         else:
             screen.fill((94,129,162))
 
-            font = pygame.font.Font('first_game\\font\\Pixeltype.ttf', 42)
+            font = pygame.font.Font('font\Pixeltype.ttf', 42)
             text_intro = font.render('Press Any Key', False, 'White').convert_alpha()
             text_intro_rect = text_intro.get_rect(center = (400, 350))
 
