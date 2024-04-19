@@ -307,3 +307,11 @@ async def main():
         clock.tick(fps) #-- This method tells to the loop no to run more than FPS
 
 asyncio.run( main())
+
+
+Correo: solucionesdocumental@mintrabajo.gov.co
+Asunto : Investigacion administrativa por incumplimiento laboral
+Nit, razon social y direccion
+Considerar pertinente indentificar.
+
+Derecho de peticion: ley 1755 de 2015, peticiones 15 dias habiles.
